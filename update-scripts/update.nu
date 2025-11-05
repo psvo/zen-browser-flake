@@ -20,13 +20,14 @@ export def generate_sources []: nothing -> record {
   let tag = get_latest_release "zen-browser/desktop"
   let prev_sources: record = open ./sources.json
 
-  if $tag == $prev_sources.version {
-	# everything up to date
-	return {
-	  prev_tag: $tag
-	  new_tag: $tag
-	}
-  }
+  # Do not just check the version to allow fixing checksum change for the same version.
+  # if $tag == $prev_sources.version {
+  #       # everything up to date
+  #       return {
+  #         prev_tag: $tag
+  #         new_tag: $tag
+  #       }
+  # }
 
   let x86_64_url = $"https://github.com/zen-browser/desktop/releases/download/($tag)/zen.linux-x86_64.tar.xz"
   let aarch64_url = $"https://github.com/zen-browser/desktop/releases/download/($tag)/zen.linux-aarch64.tar.xz"
@@ -36,10 +37,10 @@ export def generate_sources []: nothing -> record {
 	  url:  $x86_64_url
 	  hash: (get_nix_hash $x86_64_url)
 	}
-	aarch64-linux: {
-	  url: $aarch64_url
-	  hash: (get_nix_hash $aarch64_url)
-	}
+	# aarch64-linux: {
+	#   url: $aarch64_url
+	#   hash: (get_nix_hash $aarch64_url)
+	# }
   }
 
   echo $sources | save --force "sources.json"

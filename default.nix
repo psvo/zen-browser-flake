@@ -12,6 +12,6 @@ rec {
     inherit (sources) version;
   };
   zen-browser = pkgs.callPackage ./zen-browser.nix { inherit zen-browser-unwrapped; };
-  zen-browser-generic = builtins.trace "WARNING: Zen upstream no longer differentiates between specific and generic builds, this package is kept for flake backwards-compatibility only. Please use the default `zen-browser` package instead." zen-browser;
+  # zen-browser-generic = builtins.trace "WARNING: Zen upstream no longer differentiates between specific and generic builds, this package is kept for flake backwards-compatibility only. Please use the default `zen-browser` package instead." zen-browser;
   default = zen-browser;
 }

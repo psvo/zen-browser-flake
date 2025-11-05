@@ -15,12 +15,12 @@ def commit_update []: nothing -> nothing {
     print "Updating Flake lockfile"
     nix flake update --commit-lock-file
 
-    let build = nix build | complete
-    if ($build.exit_code == 0) {
-      git push
-    } else {
-      print $"Update was successful, but there was a build failure! ($build.stderr). Not pushing update."
-    }
+    # let build = nix build | complete
+    # if ($build.exit_code == 0) {
+    #   git push
+    # } else {
+    #   print $"Update was successful, but there was a build failure! ($build.stderr). Not pushing update."
+    # }
   }
 }
 

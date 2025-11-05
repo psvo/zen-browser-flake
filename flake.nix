@@ -2,7 +2,7 @@
   description = "Flake that provides Zen Browser binaries wrapped and patched for NixOS.";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
   };
 
   outputs =
@@ -13,11 +13,11 @@
     let
       supportedSystems = [
         "x86_64-linux"
-        "aarch64-linux"
+        # "aarch64-linux"
       ];
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
     in
-    {
+    rec {
       packages = forAllSystems (
         system:
         let
@@ -36,9 +36,12 @@
           update = {
             type = "app";
             program = "${pkgs.callPackage ./update-scripts { }}/bin/commit-update.nu";
+            meta.description = "Update sources.json";
           };
         }
       );
+
+      checks = forAllSystems (system: packages.${system});
 
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
     };
