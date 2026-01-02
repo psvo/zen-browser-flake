@@ -2,7 +2,7 @@
   description = "Flake that provides Zen Browser binaries wrapped and patched for NixOS.";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
   };
 
   outputs =
