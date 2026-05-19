@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Check flake inputs
-        uses: DeterminateSystems/flake-checker-action@v4
+        uses: DeterminateSystems/flake-checker-action@v12
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
       - run: nix flake check --all-systems
@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Check flake inputs
-        uses: DeterminateSystems/flake-checker-action@v4
+        uses: DeterminateSystems/flake-checker-action@v12
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
       - run: nix build .
